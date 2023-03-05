@@ -48,7 +48,7 @@ app.get("/", function(req, res){
         }
         res.redirect("/");
     }else{
-        res.render("list", {listTitle: "Today", newListItems: foundItems});
+        res.render("index", {listTitle: "Today", newListItems: foundItems});
     }
     }).catch((err) =>{
         console.error(err)
@@ -108,7 +108,7 @@ app.get("/:customListName", function(req,res){
     List.findOne({name:req.params.customListName}).then((foundListName) =>{
         if(foundListName){
             //create a new List
-            res.render("list", {listTitle: foundListName.name, newListItems: foundListName.items})
+            res.render("index", {listTitle: foundListName.name, newListItems: foundListName.items})
         }else{
             //show existing list
             const list = new List({
